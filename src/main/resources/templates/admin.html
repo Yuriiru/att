@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Личный кабинет администратора</title>
+</head>
+<body>
+<h1>Личный кабинет администратора</h1>
+<form method="post" action="@{/logout}">
+    <button type="submit">Выйти из личного кабинета</button>
+</form>
+<a href="admin/product/add">Добавить автомобиль</a>
+<hr>
+<div th:each="product : ${products}">
+    <p th:text="'Марка авто: ' + ${product.getCategory().getName()}"></p>
+    <p th:text="'Модель: ' + ${product.getTitle()}"></p>
+    <p th:text="'Описание: ' + ${product.getDescription()}"></p>
+    <p th:text="'Стоимость: ' + ${product.getPrice()}"></p>
+    <p th:text="'Страна сборки и производства: ' + ${product.getWarehouse()}"></p>
+    <p th:text="'Поставщик: ' + ${product.getSeller()}"></p>
+    <a th:href="@{/admin/product/edit/{id}(id=${product.getId()})}">Редактирование авто</a>
+    <a th:href="@{/admin/product/delete/{id}(id=${product.getId()})}">Удаление авто</a>
+    <hr>
+</div>
+</body>
+</html>

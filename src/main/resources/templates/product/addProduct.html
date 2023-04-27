@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление автомобиля</title>
+</head>
+<body>
+<h3>Добавление автомобиля</h3>
+<form th:method="POST" th:action="@{/admin/product/add}" th:object="${product}" enctype="multipart/form-data">
+    <label for="category">Выберите марку авто: </label>
+    <select name="category" th:field="*{category}" id="category">
+        <div th:each="element : ${category}">
+            <option th:text="${element.getName()}" th:value="${element.getId()}">
+        </div>
+    </select>
+    <div style="color: red" th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></div>
+    <br>
+    <br>
+    <label for="title">Введите модель авто: </label>
+    <input type="text" th:field="*{title}" placeholder="Модель" id="title">
+    <div style="color: red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
+    <br>
+    <br>
+    <label for="description">Введите описание авто: </label>
+    <textarea th:field="*{description}" placeholder="Описание" id="description"></textarea>
+    <div style="color: red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
+    <br>
+    <br>
+    <label for="price">Введите стоимость: </label>
+    <input type="number" th:field="*{price}" min="1" step="0.00" placeholder="Стоимость" id="price">
+    <div style="color: red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
+    <br>
+    <br>
+    <label for="warehouse">Введите страну сборки и производства: </label>
+    <input type="text" th:field="*{warehouse}" placeholder="Страна" id="warehouse">
+    <div style="color: red" th:if="${#fields.hasErrors('warehouse')}" th:errors="*{warehouse}"></div>
+    <br>
+    <br>
+    <label for="seller">Введите данные о поставщике: </label>
+    <textarea th:field="*{seller}" placeholder="Поставщик" id="seller"></textarea>
+    <div style="color: red" th:if="${#fields.hasErrors('seller')}" th:errors="*{seller}"></div>
+    <br>
+    <br>
+    <p style="color: red">Вы можете добавить до 5 фотографий. Первая фотография не может быть пустой т.к она будет являтся главной при выводе карточки автомобиля</p>
+    <input type="file" name="file_one">
+    <input type="file" name="file_two">
+    <input type="file" name="file_three">
+    <input type="file" name="file_four">
+    <input type="file" name="file_five">
+    <br>
+    <br>
+    <input type="submit" value="Добавить">
+</form>
+</body>
+</html>

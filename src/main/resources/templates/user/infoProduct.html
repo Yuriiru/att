@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о товаре</title>
+</head>
+<body>
+<h3>Информация о товаре: </h3>
+<p th:text="'Марка авто: ' + ${product.getCategory().getName()}"></p>
+<p th:text="'Модель: ' + ${product.getTitle()}"></p>
+<p th:text="'Описание: ' + ${product.getDescription()}"></p>
+<p th:text="'Стоимость: ' + ${product.getPrice()}"></p>
+<p th:text="'Страна сборки и производства: ' + ${product.getWarehouse()}"></p>
+<p th:text="'Поставщик: ' + ${product.getSeller()}"></p>
+<div th:each="img : ${product.getImageList()}">
+    <img th:src="'/img/' + ${img.getFileName()}">
+</div>
+</body>
+</html>
